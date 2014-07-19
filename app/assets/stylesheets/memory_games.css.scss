@@ -1,0 +1,26 @@
+// Place all the styles related to the MemoryGames controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+  width: 90% !important;
+}
+
+.item {
+  position: relative;
+  margin-left: 275px;
+  height: 500px;
+  width: 1200px;
+}
+
+.carousel-caption {
+  position: relative;
+  margin-left: -850px;
+  margin-top: -450px;
+  color: black;
+  font-size: 40px !important;
+}
+
+#carousel-example-generic {
+  top: -20px;
+}

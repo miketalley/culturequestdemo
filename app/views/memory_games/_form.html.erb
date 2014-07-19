@@ -1,0 +1,72 @@
+<div class='container'>
+<%= form_for(@memory_game) do |f| %>
+  <% if @memory_game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@memory_game.errors.count, "error") %> prohibited this memory_game from being saved:</h2>
+
+      <ul>
+      <% @memory_game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='row'>
+  <div class='col-md-6'>
+  <div class="field">
+  <%= image_tag 'http://www.chick-fil-a.com/Media/Img/catalog/Food/XLarge/Sausage-Breakfast-Burrito.png', height: '80', width: '80' %>
+  <%= f.label :picture1 %><br />
+  <%= f.file_field :picture1 %>
+  </div>
+
+  <div class="field">
+    <%= image_tag 'http://www.regentsprep.org/Regents/math/geometry/GG2/soccerball.jpg', height: '80', width: '80' %>
+  <%= f.label :picture2 %><br />
+  <%= f.file_field :picture2 %>
+  </div>
+
+  <div class="field">
+    <%= image_tag 'http://www.photo-dictionary.com/photofiles/list/2455/8394sombrero.jpg', height: '80', width: '80' %>
+  <%= f.label :picture3 %><br />
+  <%= f.file_field :picture3 %>
+  </div>
+
+  <div class="field">
+    <%= image_tag 'http://cdn.pickchur.com/wp-content/uploads/2011/07/Armadillo.png', height: '80', width: '80' %>
+  <%= f.label :picture4 %><br />
+  <%= f.file_field :picture4 %>
+  </div>
+  </div>
+  <div class='col-md-6'>
+  <div class="field">
+    <%= image_tag 'http://whatscookingamerica.net/KarenCalanchini/CayenneChilePepper.jpg', height: '80', width: '80' %>
+  <%= f.label :picture5 %><br />
+  <%= f.file_field :picture5 %>
+  </div>
+
+  <div class="field">
+    <%= image_tag 'http://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg', height: '80', width: '80' %>
+  <%= f.label :picture6 %><br />
+  <%= f.file_field :picture6 %>
+  </div>
+
+  <div class="field">
+    <%= image_tag 'http://ecx.images-amazon.com/images/I/71ojsuAQ6SL._SL1500_.jpg', height: '80', width: '80' %>
+  <%= f.label :picture7 %><br />
+  <%= f.file_field :picture7 %>
+  </div>
+
+  <div class="field">
+    <%= image_tag 'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=7629161', height: '80', width: '80' %>
+  <%= f.label :picture8 %><br />
+  <%= f.file_field :picture8 %>
+  </div>
+  </div>
+  </div>
+<div class='row'>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+</div>
+<% end %>
+</div>

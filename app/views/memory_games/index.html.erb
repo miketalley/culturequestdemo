@@ -1,0 +1,25 @@
+<div class='container'>
+<h1>Listing Memory Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memory_games.each do |memory_game| %>
+      <tr>
+        <td><%= link_to 'Show', memory_game %></td>
+        <td><%= link_to 'Edit', edit_memory_game_path(memory_game) %></td>
+        <td><%= link_to 'Destroy', memory_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Memory game', new_memory_game_path %>
+</div>

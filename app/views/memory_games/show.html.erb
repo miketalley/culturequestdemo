@@ -1,0 +1,131 @@
+<style type="text/css">
+div#memory_board{
+  background:#FFF;
+  border:#999 0px solid;
+  width:700px;
+  height:700px;
+  padding:10px;
+  margin:0px auto;
+}
+div#memory_board > div{
+  background: url('http://blog.lirs.org/wp-content/uploads/2012/06/CQ-logo-e1339416721347.jpg') center no-repeat;
+  background-size: 50px 50px;
+  border:#000 7px solid;
+  border-radius: 25px;
+  width:150px;
+  height:150px;
+  float:left;
+  margin:10px;
+  padding:20px;
+  font-size:64px;
+  cursor:pointer;
+  text-align:center;
+}
+</style>
+
+
+<script>
+// Scripted By Adam khoury in connection with the following video tutorial:
+// http://www.youtube.com/watch?v=c_ohDPWmsM0
+// var thisID = window.location.href.split('/').pop();
+// var memory_array = [];
+
+// $.ajax({
+//   url: "../memory_games/" + gameID + ".json",
+//   dataType: 'json'
+// }).success(function(data){
+//   for(var i = 0; i < data.length; i++){
+//     memory_array[i] = data[i];
+//   }
+// });
+
+var memory_array = [
+  'http://www.chick-fil-a.com/Media/Img/catalog/Food/XLarge/Sausage-Breakfast-Burrito.png',
+  'http://www.chick-fil-a.com/Media/Img/catalog/Food/XLarge/Sausage-Breakfast-Burrito.png',
+  'http://www.regentsprep.org/Regents/math/geometry/GG2/soccerball.jpg',
+  'http://www.regentsprep.org/Regents/math/geometry/GG2/soccerball.jpg',
+  'http://www.photo-dictionary.com/photofiles/list/2455/8394sombrero.jpg',
+  'http://www.photo-dictionary.com/photofiles/list/2455/8394sombrero.jpg',
+  'http://cdn.pickchur.com/wp-content/uploads/2011/07/Armadillo.png',
+  'http://cdn.pickchur.com/wp-content/uploads/2011/07/Armadillo.png',
+  'http://whatscookingamerica.net/KarenCalanchini/CayenneChilePepper.jpg',
+  'http://whatscookingamerica.net/KarenCalanchini/CayenneChilePepper.jpg',
+  'http://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg',
+  'http://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg',
+  'http://ecx.images-amazon.com/images/I/71ojsuAQ6SL._SL1500_.jpg',
+  'http://ecx.images-amazon.com/images/I/71ojsuAQ6SL._SL1500_.jpg',
+  'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=7629161',
+  'http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=7629161'];
+var memory_values = [];
+var memory_tile_ids = [];
+var tiles_flipped = 0;
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+  tiles_flipped = 0;
+  var output = '';
+    memory_array.memory_tile_shuffle();
+  for(var i = 0; i < memory_array.length; i++){
+    output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+  }
+  document.getElementById('memory_board').innerHTML = output;
+}
+function memoryFlipTile(tile,val){
+  if(tile.innerHTML == "" && memory_values.length < 2){
+    tile.style.background = '#FFF';
+    tile.innerHTML = "<img src='" + val + "' height='100px' width='100px'>";
+    if(memory_values.length == 0){
+      memory_values.push(val);
+      memory_tile_ids.push(tile.id);
+    } else if(memory_values.length == 1){
+      memory_values.push(val);
+      memory_tile_ids.push(tile.id);
+      if(memory_values[0] == memory_values[1]){
+        tiles_flipped += 2;
+        // Clear both arrays
+        memory_values = [];
+              memory_tile_ids = [];
+        // Check to see if the whole board is cleared
+        if(tiles_flipped == memory_array.length){
+          var imgTop = ($(window).height() - img.height())/2;
+          var imgLft = ($(window).width() - img.width())/2;
+          $("<img id='popup-img' src='http://www.estuimagen.com/imagenes/feliz-cumpleanos/felicitaciones-18.gif'>").appendTo('body');
+          var img = $('#popup-img');
+          img
+          .css({ top: imgTop, left: imgLft })
+          .fadeIn(slow);
+          document.getElementById('memory_board').innerHTML = "";
+          setTimeout(newBoard(), 2000);
+        }
+      } else {
+        function flip2Back(){
+            // Flip the 2 tiles back over
+            var tile_1 = document.getElementById(memory_tile_ids[0]);
+            var tile_2 = document.getElementById(memory_tile_ids[1]);
+            tile_1.style.background = 'url("http://blog.lirs.org/wp-content/uploads/2012/06/CQ-logo-e1339416721347.jpg") no-repeat center';
+            tile_1.style.backgroundSize = '50px 50px';
+                  tile_1.innerHTML = "";
+            tile_2.style.background = 'url("http://blog.lirs.org/wp-content/uploads/2012/06/CQ-logo-e1339416721347.jpg") no-repeat center';
+            tile_2.style.backgroundSize = '50px 50px';
+                  tile_2.innerHTML = "";
+            // Clear both arrays
+            memory_values = [];
+                  memory_tile_ids = [];
+        }
+        setTimeout(flip2Back, 700);
+      }
+    }
+  }
+}
+</script>
+</head>
+<div id="memory_board"></div>
+<script>newBoard();</script>
+
